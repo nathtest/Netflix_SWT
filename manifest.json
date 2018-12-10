@@ -1,0 +1,25 @@
+{
+  "name": "NetSpeed : Netflix Stop wasting my time",
+  "version": "1.0",
+  "description": "This Extension auto click on intro and next episode buttons on netflix. ",
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "https://www.netflix.com/"
+  ],
+  "options_page": "options.html",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "icons": {
+    "16": "images/free-red-n-clipart-library_16.png",
+    "32": "images/free-red-n-clipart-library_32.png",
+    "48": "images/free-red-n-clipart-library_48.png",
+    "128": "images/free-red-n-clipart-library_128.png"
+  },
+  "manifest_version": 2
+}
