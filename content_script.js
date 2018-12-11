@@ -32,11 +32,10 @@ async function skipNextButtonClick() {
 function clickPlayButton() {
 
 
-
     var play_button = document.getElementsByClassName("touchable PlayerControls--control-element nfp-button-control default-control-button button-nfplayerPlay");
     play_button[0].click();
 
-    chrome.extension.getBackgroundPage().console.log('clickPlayButton');
+    console.log('clickPlayButton');
 
 }
 
@@ -44,10 +43,17 @@ function clickNextEpisodeButton() {
     var next_button = document.getElementsByClassName("WatchNext-still-hover-container");
     next_button[0].click();
 
-    chrome.extension.getBackgroundPage().console.log('clickNextEpisodeButton');
+    console.log('clickNextEpisodeButton');
 
 
 }
 
-skipIntroButtonClick();
-skipNextButtonClick();
+chrome.storage.sync.get(['skip_intro'], function(result) {
+    if (result.skip_intro) skipIntroButtonClick();
+    console.log('skip_intro value currently is ' + result.skip_intro);
+        });
+
+chrome.storage.sync.get(['next_episode'], function(result) {
+    if (result.next_episode) skipNextButtonClick();
+    console.log('next_episode value currently is ' + result.next_episode);
+        });
