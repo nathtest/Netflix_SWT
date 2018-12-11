@@ -1,7 +1,8 @@
 {
-  "name": "NetSpeed : Netflix Stop wasting my time",
+  "name": "Netflix Stop Wasting my Time",
+  "short_name": "Netfix SWT",
   "version": "1.0",
-  "description": "This Extension auto click on intro and next episode buttons on netflix. ",
+  "description": "This Extension auto click on intro and next episode buttons on netflix.",
   "permissions": [
     "activeTab",
     "declarativeContent",
