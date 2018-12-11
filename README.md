@@ -1,5 +1,5 @@
 # Netflix_SWT
-Netflix Stop Wasting my Time is an Google chrome extension that automatically click on skip intro button and next episode button
+Netflix Stop Wasting my Time is an Google chrome extension that automatically click on skip intro button and next episode button.
 
 --Version 1.1 December 2018--
 
