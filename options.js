@@ -1,3 +1,16 @@
+function updateCheckbox() {
+    let skip_intro_checkbox = document.getElementById('introButton');
+    let nextButton_checkbox = document.getElementById('nextButton');
+
+    chrome.storage.sync.get(['skip_intro'], function (result) {
+        skip_intro_checkbox.checked = !!result.skip_intro;
+    });
+
+    chrome.storage.sync.get(['watch_next_episode'], function (result) {
+        nextButton_checkbox.checked = !!result.watch_next_episode;
+    });
+
+}
 
 function constructOptions() {
 
@@ -25,17 +38,25 @@ function constructOptions() {
 
         if (this.checked) {
             // Checkbox is checked..
-            chrome.storage.sync.set({next_episode: 1}, function () {
-                console.log('next_episode checkbox is ' + 1);
-            })
+            chrome.storage.sync.set({watch_next_episode: 1}, function () {
+                console.log('watch_next_episode checkbox is ' + 1);
+            });
+
+            chrome.storage.sync.set({seamless_next_episode: 1}, function () {
+                console.log('seamless_next_episode checkbox is ' + 1);
+            });
         } else {
             // Checkbox is not checked..
-            chrome.storage.sync.set({next_episode: 0}, function () {
-                console.log('next_episode checkbox is ' + 0);
-            })
+            chrome.storage.sync.set({watch_next_episode: 0}, function () {
+                console.log('watch_next_episode checkbox is ' + 0);
+            });
+            chrome.storage.sync.set({seamless_next_episode: 0}, function () {
+                console.log('seamless_next_episode checkbox is ' + 0);
+            });
         }
 
     });
 }
 
+updateCheckbox();
 constructOptions();
