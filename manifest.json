@@ -1,20 +1,20 @@
 {
   "name": "Netflix Stop Wasting my Time",
   "short_name": "Netfix SWT",
-  "version": "1.1",
+  "version": "1.2",
   "description": "This Extension auto click on intro and next episode buttons on netflix.",
   "permissions": [
     "activeTab",
     "declarativeContent",
     "storage",
-    "https://www.netflix.com/"
+    "contextMenus"
   ],
-  "options_page": "options.html",
+  "action": {
+    "default_title": "Netfix SWT",
+    "default_popup": "popup.html"
+  },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "icons": {
     "16": "images/free-red-n-clipart-library_16.png",
@@ -22,5 +22,13 @@
     "48": "images/free-red-n-clipart-library_48.png",
     "128": "images/free-red-n-clipart-library_128.png"
   },
-  "manifest_version": 2
+  "content_scripts": [ {
+    "matches": ["https://www.netflix.com/watch/*"],
+    "js": ["content_script.js"]
+  } ],
+  "web_accessible_resources": [{
+    "resources": ["fonts/BebasNeue-Regular.ttf", "images/free-red-n-clipart-library_16.png"],
+    "matches": ["<all_urls>"]
+  }],
+  "manifest_version": 3
 }

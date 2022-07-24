@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Netfix SWT</title>
+    <style>
+        .switch input
+        {
+            display: none;
+        }
+
+        .switch
+        {
+            display: inline-block;
+            width: 30px; /*=w*/
+            height: 15px; /*=h*/
+            margin: 4px;
+            transform: translateY(50%);
+            position: relative;
+        }
+
+        .slider
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 30px;
+            box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+            cursor: pointer;
+            border: 4px solid transparent;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .slider:before
+        {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #777;
+            border-radius: 30px;
+            transform: translateX(-15px); /*translateX(-(w-h))*/
+            transition: 0.2s;
+        }
+
+        input:checked + .slider:before
+        {
+            transform: translateX(15px); /*translateX(w-h)*/
+            background-color: #D81F26;
+        }
+
+        input:checked + .slider
+        {
+            box-shadow: 0 0 0 2px #D81F26, 0 0 8px #D81F26;
+        }
+
+        .switch_label{
+            vertical-align: middle;
+        }
+
+        .switch_wrapper{
+            display: inline-block;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        .logo {
+        }
+
+        .wrapper_align { position: relative; }
+        .img_align {
+            vertical-align: bottom;
+            margin-left: 3px;
+        }
+        .span_align {
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @font-face {
+            font-family: 'BebasNeue Regular';
+            font-style: normal;
+            font-weight: 400;
+            src: url('./fonts/BebasNeue-Regular.ttf') format('truetype');
+        }
+
+        .font {
+            font-family: "BebasNeue Regular", sans-serif !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="wrapper_align">
+    <img class="img_align logo" src='./images/free-red-n-clipart-library_16.png'>
+    <span class="span_align font"><b>Netflix SWT</b></span>
+</div>
+<div class="switch_wrapper">
+    <label class="switch"><input type="checkbox" id="skip_intro" name="skip_intro"><span class="slider"></span></label>
+    <span class="switch_label font">Skip intro</span>
+</div>
+<div class="switch_wrapper">
+    <label class="switch"><input type="checkbox" id="skip_watch_later" name="skip_watch_later"><span class="slider"></span></label>
+    <span class="switch_label font">Skip next episode</span>
+</div>
+</body>
+<script src="popup.js"></script>
+</html>

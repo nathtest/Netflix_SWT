@@ -1,97 +1,73 @@
-async function skipIntroButton() {
+'use strict';
 
-
-    while (document.getElementsByClassName("skip-credits").length < 1) {
-        await new Promise(r => setTimeout(r, 500));
-    }
-    // now the element is loaded
-
-    clickIntroButton();
-
+function log(message, debug=true) {
+    if (debug)console.log(message);
 }
 
-async function skipWatchNextButton() {
+// <button className="button-primary watch-video--skip-content-button medium hasLabel ltr-ublg01"
+//         data-uia="player-skip-intro" type="button"><span className="ltr-18i00qw">Passer l'introduction</span>
+// </button>
+
+async function newSkipIntroButton() {
+
+    chrome.storage.sync.get(['skip_intro'], async function (result) {
+        log('skip_intro value currently is ' + result.skip_intro);
+        if (result.skip_intro)
+        {
+            while (document.getElementsByClassName("button-primary watch-video--skip-content-button medium hasLabel ltr-ublg01").length < 1) {
+                await new Promise(r => setTimeout(r, 500));
+            }
+            // now the element is loaded
+
+            log('newSkipIntroButton detected');
 
 
-    while (document.getElementsByClassName("WatchNext-still-hover-container").length < 1) {
-        await new Promise(r => setTimeout(r, 500));
-    }
-    // now the element is loaded
+            var next_button = document.getElementsByClassName("button-primary watch-video--skip-content-button medium hasLabel ltr-ublg01");
+            next_button[0].click();
 
-    clickWatchNextEpisodeButton();
-
+            log('newSkipIntroButton clicked');
+        }
+    });
 }
 
-async function skipNextSeamlessButton() {
 
-// <a tabindex="0" class="nf-icon-button nf-flat-button nf-flat-button-primary nf-flat-button-uppercase" aria-label="Prochain épisode dans 1" role="link" data-uia="next-episode-seamless-button"><span class="nf-flat-button-icon nf-flat-button-icon-play"></span><span class="nf-flat-button-text">Prochain épisode dans 1</span></a>
+// <button className="color-primary hasLabel hasIcon ltr-v8pdkb" data-uia="next-episode-seamless-button" type="button">
+//     <div className="ltr-1ksxkn9">
+//         <div className="medium ltr-18dhnor" role="presentation">
+//             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+//                  className="Hawkins-Icon Hawkins-Icon-Standard">
+//                 <path
+//                     d="M4 2.69127C4 1.93067 4.81547 1.44851 5.48192 1.81506L22.4069 11.1238C23.0977 11.5037 23.0977 12.4963 22.4069 12.8762L5.48192 22.1849C4.81546 22.5515 4 22.0693 4 21.3087V2.69127Z"
+//                     fill="currentColor"></path>
+//             </svg>
+//         </div>
+//     </div>
+//     <div className="ltr-1i33xgl" style="width: 1rem;"></div>
+//     <span className="ltr-zd4xih">Ép. suivant</span></button>
 
 
-    while (document.getElementsByClassName("nf-icon-button nf-flat-button nf-flat-button-primary nf-flat-button-uppercase").length < 1) {
-        await new Promise(r => setTimeout(r, 500));
-    }
-    // now the element is loaded
+async function newSkipWatchNextButton() {
 
-    clickNextEpisodeSeamlessButton();
+    chrome.storage.sync.get(['watch_next_episode'], async function (result) {
+        log('watch_next_episode value currently is ' + result.watch_next_episode);
 
+        if (result.watch_next_episode)
+        {
+            while (document.getElementsByClassName("color-primary hasLabel hasIcon ltr-v8pdkb").length < 1) {
+                await new Promise(r => setTimeout(r, 500));
+            }
+            // now the element is loaded
+
+            log('newSkipWatchNextButton detected');
+
+
+            var next_button = document.getElementsByClassName("color-primary hasLabel hasIcon ltr-v8pdkb");
+            next_button[0].click();
+
+            log('newSkipWatchNextButton clicked');
+        }
+    });
 }
 
-function clickIntroButton() {
-
-
-    var skip_class = document.getElementsByClassName("skip-credits");
-
-    var skip_button = skip_class[0].getElementsByClassName("nf-flat-button-text");
-
-    skip_button[0].click();
-
-    setTimeout(function () {
-        clickPlayButton()
-    }, 1000);
-}
-
-function clickPlayButton() {
-
-    var play_button = document.getElementsByClassName("touchable PlayerControls--control-element nfp-button-control default-control-button button-nfplayerPlay");
-
-    try {
-        play_button[0].click();
-    }
-    catch (e) {
-        console.log(e.toString())
-    }
-    finally {
-        console.log('Click PlayButton');
-    }
-
-}
-
-function clickWatchNextEpisodeButton() {
-    var next_button = document.getElementsByClassName("WatchNext-still-hover-container");
-    next_button[0].click();
-
-    console.log('clickWatchNextEpisodeButton');
-
-}
-
-function clickNextEpisodeSeamlessButton() {
-    var next_button = document.getElementsByClassName("nf-icon-button nf-flat-button nf-flat-button-primary nf-flat-button-uppercase");
-    next_button[0].click();
-
-    console.log('clickNextEpisodeSeamlessButton');
-
-}
-
-chrome.storage.sync.get(['skip_intro'], function (result) {
-    if (result.skip_intro) skipIntroButton();
-    console.log('skip_intro value currently is ' + result.skip_intro);
-});
-
-chrome.storage.sync.get(['watch_next_episode'], function (result) {
-    if (result.watch_next_episode) skipWatchNextButton();
-    console.log('watch_next_episode value currently is ' + result.watch_next_episode);
-});
-chrome.storage.sync.get(['seamless_next_episode'], function (result) {
-    if (result.seamless_next_episode) skipNextSeamlessButton();
-    console.log('seamless_next_episode value currently is ' + result.seamless_next_episode);
-});
+newSkipIntroButton();
+newSkipWatchNextButton();
