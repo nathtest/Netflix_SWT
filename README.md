@@ -7,7 +7,7 @@ Netflix Stop Wasting my Time is an Google chrome extension that automatically cl
 
 <img src="https://github.com/nathtest/Netflix_SWT/blob/master/image%20desc/NSWT-2.png" width="350">
 
-<img src="https://github.com/nathtest/Netflix_SWT/blob/master/image%20desc/NSWT-3.png" width="350">
+<img src="https://github.com/nathtest/Netflix_SWT/blob/master/image%20desc/popup.png" width="350">
 
 [Youtube video link](https://www.youtube.com/watch?v=k7VON-VY05E)
 
