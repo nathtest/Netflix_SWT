@@ -6,8 +6,7 @@
   "permissions": [
     "activeTab",
     "declarativeContent",
-    "storage",
-    "contextMenus"
+    "storage"
   ],
   "action": {
     "default_title": "Netfix SWT",

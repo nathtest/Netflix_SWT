@@ -1,6 +1,6 @@
 'use strict';
 
-function log(message, debug=true) {
+function log(message, debug=false) {
     if (debug)console.log(message);
 }
 

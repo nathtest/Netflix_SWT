@@ -1,6 +1,6 @@
 'use strict';
 
-function log(message, debug=true) {
+function log(message, debug=false) {
     if (debug)console.log(message);
 }
 
@@ -18,6 +18,8 @@ async function newSkipIntroButton() {
                 await new Promise(r => setTimeout(r, 500));
             }
             // now the element is loaded
+            log("page url " + document.location.href)
+            if (!document.location.href.startsWith("https://www.netflix.com/watch/"))return; // prevent executing function if user changed paged during the timeout
 
             log('newSkipIntroButton detected');
 
@@ -57,6 +59,9 @@ async function newSkipWatchNextButton() {
                 await new Promise(r => setTimeout(r, 500));
             }
             // now the element is loaded
+            log("page url " + document.location.href)
+            if (!document.location.href.startsWith("https://www.netflix.com/watch/"))return; // prevent executing function if user changed paged during the timeout
+
 
             log('newSkipWatchNextButton detected');
 
